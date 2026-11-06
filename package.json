@@ -1,0 +1,54 @@
+{
+  "name": "medicentrix-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MediCentrix Desktop medication list organizer - prototype",
+  "main": "electron/main.cjs",
+  "author": "MediCentrix Systems LLC",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "electron .",
+    "build:win": "electron-builder --win nsis --x64 --publish never"
+  },
+  "devDependencies": {
+    "electron": "latest",
+    "electron-builder": "latest"
+  },
+  "build": {
+    "appId": "com.medicentrix.desktop",
+    "productName": "MediCentrix Desktop",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "electron/**/*",
+      "web/**/*",
+      "build/icon.ico",
+      "package.json",
+      "!**/*.map"
+    ],
+    "asar": true,
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "artifactName": "MediCentrix-Desktop-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "MediCentrix Desktop",
+      "deleteAppDataOnUninstall": true,
+      "runAfterFinish": true
+    }
+  }
+}
